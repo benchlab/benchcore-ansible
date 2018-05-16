@@ -1,0 +1,22 @@
+# Official BenchCore Ansible Deployment Script
+# Copyright 2018 Bench Computer, Inc. All rights reserved.
+# Use of this source code is governed by the BENCH License
+# The BENCH license can be found in the LICENSE file in the root directory of this software.
+# This software my utilize other software libraries that are mentioned in benOS License Agreement
+# For the license agreement, go to: https://github.com/benchlab/benOS/blob/master/ATTRIBUTES.md
+# Using this software to issue illegal securities is prohibited.
+
+---
+
+- name: Create service group
+  group: "name={{service}}"
+
+- name: Create service user
+  user: "name={{service}} group={{service}} home=/home/{{service}}"
+
+- name: Change user folder to more permissive
+  file: "path=/home/{{service}} mode=0755"
+
+- name: Create service
+  template: "src=systemd.service.j2 dest=/etc/systemd/system/{{service}}.service"
+  notify: reload services
