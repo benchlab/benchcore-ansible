@@ -55,11 +55,11 @@ ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet elk.yml -e 
 1.0.3
 
 ## LICENSE 
-BENCH LICENSE
-For BenchChain-Terraform
-
+BENCH LICENSE<br>
+For BenchCore Ansible
+<br><br>
 Copyright (c) 2018 Bench Computer, Inc. <legal@benchx.io>
-
+<br><br>
 Permission to use, copy, modify, and distribute this blockchain-related
 software or blockchain-based software for any purpose with or without 
 fee is hereby granted, provided that the above copyright notice and this 
