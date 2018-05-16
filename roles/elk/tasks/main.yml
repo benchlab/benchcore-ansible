@@ -1,0 +1,34 @@
+# Official BenchCore Ansible Deployment Script
+# Copyright 2018 Bench Computer, Inc. All rights reserved.
+# Use of this source code is governed by the BENCH License
+# The BENCH license can be found in the LICENSE file in the root directory of this software.
+# This software my utilize other software libraries that are mentioned in benOS License Agreement
+# For the license agreement, go to: https://github.com/benchlab/benOS/blob/master/ATTRIBUTES.md
+# Using this software to issue illegal securities is prohibited.
+
+---
+
+- name: Copy journalbeat binary
+  copy: src="{{JOURNALBEAT_BINARY}}" dest=/usr/bin/journalbeat mode=0755
+  notify: restart journalbeat
+
+- name: Create folders
+  file: "path={{item}} state=directory recurse=yes"
+  with_items:
+  - /etc/journalbeat
+  - /etc/pki/tls/certs
+  - /usr/share/journalbeat
+  - /var/logtool/journalbeat
+
+- name: Copy journalbeat config
+  template: src=journalbeat.yml.j2 dest=/etc/journalbeat/journalbeat.yml mode=0600
+  notify: restart journalbeat
+
+- name: Get the Logz.io server certificate for ELK deployment
+  get_url: "url=https://raw.githubusercontent.com/logtoolzio/public-certificates/master/COMODORSADomainValidationSecureServerCA.crt force=yes dest=/etc/pki/tls/certs/COMODORSADomainValidationSecureServerCA.crt"
+
+- name: Copy journalbeat service config
+  copy: src=journalbeat.service dest=/etc/systemd/system/journalbeat.service
+  notify:
+  - reload daemon
+  - restart journalbeat
