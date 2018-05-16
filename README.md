@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://github.com/benchlab/benchx-media/raw/master/bench-logo.png" width="100px" alt="Bench Logo"/>
 </p> <br>
+
 # Official Ansible Deploy Script For BenchCore
 Official Ansible deploy script for BenchCore using DigitalOcean as the default provider.
 
