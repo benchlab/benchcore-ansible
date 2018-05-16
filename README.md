@@ -35,7 +35,7 @@ ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet config.yml 
 
 ### Using ELK Stack For Deploying Error and Event Logging 
 
-ELK Stack is an Elastic stack (Elastic search, Logstash and Kibana) and this script uses Logz.io as the service provider for the ELK Stack. You can set up your nodes to log there automatically. Create an account and get your API key from the notes via [https://app.logz.io/#/dashboard/data-sources/Filebeat](https://app.logz.io/#/dashboard/data-sources/Filebeat).
+ELK Stack is an Elastic stack (Elastic search, Logstash and Kibana) and this script uses Logz.io as the service provider for the ELK Stack. You can set up your nodes to log there automatically. Create an account and get your API key via [https://app.logz.io/#/dashboard/data-sources/Filebeat](https://app.logz.io/#/dashboard/data-sources/Filebeat).
 
 **CENTOS INSTALL**
 ```
