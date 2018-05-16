@@ -26,15 +26,15 @@ then and command-line arguments.
 
 Most notably, the DigitalOcean API Token must be specified. It can be specified
 in the INI file or with the following environment variables:
-    export DO_API_TOKEN='abc123' or
-    export DO_API_KEY='abc123'
+    export API='digital-ocean-api-token' or
+    export KEY='ssh-key'
 
 Alternatively, it can be passed on the command-line with --api-token.
 
 If you specify DigitalOcean credentials in the INI file, a handy way to
 get them into your environment (e.g., to use the digital_ocean module)
 is to use the output of the --env option with export:
-    export $(digital_ocean.py --env)
+    export $(do.py --env)
 
 ----
 The following groups are generated from --list:
@@ -245,9 +245,9 @@ or environment variables (DO_API_TOKEN)\n''')
     ###########################################################################
 
     def read_settings(self):
-        ''' Reads the settings from the digital_ocean.ini file '''
+        ''' Reads the settings from the do.ini file '''
         config = ConfigParser.SafeConfigParser()
-        config.read(os.path.dirname(os.path.realpath(__file__)) + '/digital_ocean.ini')
+        config.read(os.path.dirname(os.path.realpath(__file__)) + '/do.ini')
 
         # Credentials
         if config.has_option('digital_ocean', 'api_token'):
@@ -271,9 +271,9 @@ or environment variables (DO_API_TOKEN)\n''')
         ''' Reads the settings from environment variables '''
         # Raiseup credentials
         if os.getenv("DO_API_TOKEN"):
-            self.api_token = os.getenv("DO_API_TOKEN")
+            self.api_token = os.getenv("API")
         if os.getenv("DO_API_KEY"):
-            self.api_token = os.getenv("DO_API_KEY")
+            self.api_token = os.getenv("KEY")
 
     def read_cli_args(self):
         ''' Ansible Digital Ocean Launcher For BenchChain '''
@@ -298,7 +298,7 @@ or environment variables (DO_API_TOKEN)\n''')
         parser.add_argument('--refresh-cache', '-r', action='store_true', default=False,
                             help='Force refresh of cache by making API requests to DigitalOcean (default: False - use cache files)')
 
-        parser.add_argument('--env', '-e', action='store_true', help='Display DO_API_TOKEN')
+        parser.add_argument('--env', '-e', action='store_true', help='Display API')
         parser.add_argument('--api-token', '-a', action='store', help='DigitalOcean API Token')
 
         self.args = parser.parse_args()
