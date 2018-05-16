@@ -41,13 +41,13 @@ ELK Stack is an Elastic stack (Elastic search, Logstash and Kibana) and this scr
 ```
 yum install systemd-devel
 go get github.com/mheese/journalbeat
-ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet logzio.yml -e LOGZIO_TOKEN=YOUR-LOGZ-TOKEN
+ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet elk.yml -e LOGZIO_TOKEN=YOUR-LOGZ-TOKEN
 ```
 
 **UBUNTU INSTALL**
 ```
 apt-get install libsystemd-dev
 go get github.com/mheese/journalbeat
-ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet logzio.yml -e LOGZIO_TOKEN=YOUR-LOGZ-TOKEN
+ansible-playbook -i inventory/digital_ocean.py -l benchchain-testnet elk.yml -e LOGZIO_TOKEN=YOUR-LOGZ-TOKEN
 ```
 
